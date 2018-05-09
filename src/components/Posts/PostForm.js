@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import axios from "axios/index";
+import {connect} from 'react-redux';
+import {addPost} from '../../actions/postActions';
 
 /**
  * @class PostForm
@@ -20,13 +21,8 @@ class PostForm extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        // Add Action to create a new Post.
-        axios.post('https://jsonplaceholder.typicode.com/posts', {
-            post: this.state
-        }).then((response) => {
-            // this.setState({posts: response.data.post})
-            console.log(response)
-        })
+        // Call action here1
+        this.props.addPost(this.state);
     }
 
     render() {
@@ -57,4 +53,6 @@ class PostForm extends Component {
     }
 }
 
-export default PostForm;
+const mapStateToPorps = (state) => {}
+
+export default connect(mapStateToPorps, {addPost})(PostForm);
